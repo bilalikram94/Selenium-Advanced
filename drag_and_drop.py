@@ -11,11 +11,15 @@ class DragDrop:
         driver.get(baseURL)
         driver.implicitly_wait(3)
         driver.switch_to.frame(0)
-        fromelement = driver.find_element(By.ID,"draggable")
-        toelement = driver.find_element(By.ID,"droppable")
+        fromElement = driver.find_element(By.ID,"draggable")
+        toElement = driver.find_element(By.ID,"droppable")
         time.sleep(2)
         try:
-            print("element dragged")
+            actions = ActionChains(driver)
+            #actions.drag_and_drop(fromElement, toElement).perform()
+            actions.click_and_hold(fromElement).move_to_element(toElement).release().perform()
+            print("element dragged and dropped successfully")
+            time.sleep(3)
 
 
 
